@@ -8,25 +8,59 @@
         body {
             background-color: black;
             color: green;
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', Arial, sans-serif;
             margin: 0;
             padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1, h2 {
+            text-align: center;
         }
 
         .rainbow-text {
-            background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 2.5em;
             font-weight: bold;
+            animation: color-flash 1.5s infinite;
+        }
+
+        @keyframes color-flash {
+            0% { color: red; }
+            20% { color: orange; }
+            40% { color: yellow; }
+            60% { color: green; }
+            80% { color: blue; }
+            100% { color: violet; }
         }
 
         .separator {
             border-top: 2px solid green;
-            margin: 20px 0;
+            margin: 20px auto;
+            width: 80%;
+        }
+
+        p {
+            margin: 10px auto;
+            width: 80%;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            width: 80%;
+            margin: 10px auto;
+            text-align: center;
+        }
+
+        li {
+            margin: 5px 0;
         }
 
         .button {
-            display: inline-block;
+            display: block;
+            width: fit-content;
+            margin: 15px auto;
             border: 2px solid green;
             background-color: black;
             color: green;
@@ -34,14 +68,38 @@
             text-align: center;
             text-decoration: none;
             font-weight: bold;
-            margin: 10px 0;
+            font-size: 1.2em;
             cursor: pointer;
             transition: background-color 0.3s, color 0.3s;
+            border-radius: 5px;
         }
 
         .button:hover {
             background-color: green;
             color: black;
+        }
+
+        .floating-textbox {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: black;
+            border: 2px solid green;
+            color: green;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 0 10px green;
+            animation: float 3s infinite alternate;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-10px);
+            }
         }
     </style>
 </head>
@@ -71,5 +129,10 @@
 
     <a href="https://devconsoleps3.github.io/DevConsoleENabler/devconsole.html" class="button">DevConsole ENabler</a>
     <a href="#" class="button">DevConsole ENabler (HEN Replacer)</a>
+
+    <div class="floating-textbox">
+        <p><strong>Current Version:</strong></p>
+        <p>4.91.22</p>
+    </div>
 </body>
 </html>
