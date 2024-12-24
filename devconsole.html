@@ -1,6 +1,51 @@
+<!DOCTYPE html>
 <html lang="en">
-    <body>
-        <script>
+<head>
+    <meta charset="UTF-8">
+    <title>DevConsole Client</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: #00ff00;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin: 20px auto;
+            max-width: 90%;
+        }
+        .text {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .loading-dots {
+            display: inline-block;
+            font-size: 20px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text">Connection Status: Secure Connection</div>
+        <div class="text">Enabling DevConsole 4.91.22<span class="loading-dots">...</span></div>
+        <div class="text">Plugins:</div>
+        <ul>
+            <li>AntiBan</li>
+            <li>FPS Unlock</li>
+            <li>NordVPN</li>
+            <li>EasyAccess</li>
+            <li>DDoS Protection</li>
+        </ul>
+        <div class="text">Bypasses:</div>
+        <ul>
+            <li>Security Bypass</li>
+            <li>Suspension Bypass</li>
+        </ul>
+    </div>
+            <script>
             var xtra_data,
                 stack_frame,
                 jump_2,
@@ -1432,5 +1477,5 @@ document.write(`
                 initROP(true);
             }, 0);
         </script>
-    </body>
+</body>
 </html>
