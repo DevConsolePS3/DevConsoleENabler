@@ -58,9 +58,6 @@
         }
 
         .button {
-            display: block;
-            width: fit-content;
-            margin: 15px auto;
             border: 2px solid green;
             background-color: black;
             color: green;
@@ -77,6 +74,18 @@
         .button:hover {
             background-color: green;
             color: black;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Space between buttons */
+            margin: 20px auto;
+        }
+
+        .button-container-vertical {
+            text-align: center;
+            margin: 20px auto;
         }
 
         .floating-textbox {
@@ -127,8 +136,14 @@
     </ul>
     <p>Connections from our Servers to yours are always more secure!</p>
 
-    <a href="https://devconsoleps3.github.io/DevConsoleENabler/ENabler/ENabler.html" class="button">DevConsole ENabler</a>
-    <a href="https://devconsoleps3.github.io/DevConsoleENabler/HEN-Replace/henreplace.html" class="button">DevConsole ENabler (HEN Replacer)</a>
+    <div class="button-container">
+        <a href="https://devconsoleps3.github.io/DevConsoleENabler/ENabler/ENabler.html" class="button">DevConsole ENabler</a>
+        <a href="https://devconsoleps3.github.io/DevConsoleENabler/HEN-Replace/henreplace.html" class="button">DevConsole ENabler (HEN Replacer)</a>
+    </div>
+
+    <div class="button-container-vertical">
+        <a href="https://devconsoleps3.github.io/DevConsoleENabler/Information/info.html" class="button">Information About DevConsole</a>
+    </div>
 
     <div class="floating-textbox">
         <p><strong>Current Version:</strong></p>
