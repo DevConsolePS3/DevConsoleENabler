@@ -5,149 +5,208 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevConsole ENabler</title>
     <style>
-        body {
-            background-color: black;
-            color: green;
-            font-family: 'Roboto', Arial, sans-serif;
+        :root {
+            --primary-color: #00ff88;
+            --bg-dark: #0a0a0a;
+            --bg-darker: #000000;
+            --text-color: #e0e0e0;
+            --container-width: min(1200px, 90%);
+        }
+
+        * {
             margin: 0;
-            padding: 20px;
-            line-height: 1.6;
-        }
-
-        h1, h2 {
-            text-align: center;
-        }
-
-        .rainbow-text {
-            font-size: 2.5em;
-            font-weight: bold;
-            animation: color-flash 1.5s infinite;
-        }
-
-        @keyframes color-flash {
-            0% { color: red; }
-            20% { color: orange; }
-            40% { color: yellow; }
-            60% { color: green; }
-            80% { color: blue; }
-            100% { color: violet; }
-        }
-
-        .separator {
-            border-top: 2px solid green;
-            margin: 20px auto;
-            width: 80%;
-        }
-
-        p {
-            margin: 10px auto;
-            width: 80%;
-            text-align: center;
-        }
-
-        ul {
-            list-style-type: none;
             padding: 0;
-            width: 80%;
-            margin: 10px auto;
-            text-align: center;
+            box-sizing: border-box;
         }
 
-        li {
-            margin: 5px 0;
+        body {
+            background: linear-gradient(135deg, var(--bg-dark), var(--bg-darker));
+            color: var(--text-color);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: var(--container-width);
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .header {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(180deg, rgba(0,255,136,0.1) 0%, rgba(0,0,0,0) 100%);
+            margin-bottom: 3rem;
+        }
+
+        .title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #00ff88, #00ffea);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            opacity: 0.8;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 255, 136, 0.1);
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            margin: 0.8rem 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-list li::before {
+            content: "→";
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+        }
+
+        .buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 3rem 0;
         }
 
         .button {
-            border: 2px solid green;
-            background-color: black;
-            color: green;
-            padding: 10px 20px;
-            text-align: center;
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 1.2em;
-            cursor: pointer;
-            transition: background-color 0.3s, color 0.3s;
-            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 200px;
         }
 
         .button:hover {
-            background-color: green;
-            color: black;
+            background: var(--primary-color);
+            color: var(--bg-darker);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
         }
 
-        .button-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px; /* Space between buttons */
-            margin: 20px auto;
-        }
-
-        .button-container-vertical {
-            text-align: center;
-            margin: 20px auto;
-        }
-
-        .floating-textbox {
+        .version-badge {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: black;
-            border: 2px solid green;
-            color: green;
-            padding: 15px;
-            text-align: center;
-            border-radius: 10px;
-            box-shadow: 0 0 10px green;
-            animation: float 3s infinite alternate;
+            bottom: 2rem;
+            right: 2rem;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            animation: float 3s ease-in-out infinite;
         }
 
         @keyframes float {
-            0% {
-                transform: translateY(0);
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
             }
-            100% {
-                transform: translateY(-10px);
+            
+            .buttons-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .version-badge {
+                position: static;
+                margin: 2rem auto;
+                width: fit-content;
+                animation: none;
             }
         }
     </style>
 </head>
 <body>
-    <h1 class="rainbow-text">DevConsole ENabler</h1>
-    <p><strong>About DevConsole:</strong></p>
-    <p>DevConsole is a new CFW and HFW!</p>
-    <p>This Exploit/Custom Firmware/Hybrid Firmware gives a more advanced and enhanced experience!</p>
+    <header class="header">
+        <h1 class="title">DevConsole ENabler</h1>
+        <p class="subtitle">Advanced CFW & HFW Experience</p>
+    </header>
 
-    <div class="separator"></div>
+    <main class="container">
+        <div class="features-grid">
+            <div class="feature-card">
+                <h2 class="feature-title">Core Features</h2>
+                <ul class="feature-list">
+                    <li>AntiBan Protection</li>
+                    <li>FPS Unlock System</li>
+                    <li>NordVPN Integration</li>
+                    <li>EasyAccess Tools</li>
+                    <li>DDoS Protection Layer</li>
+                </ul>
+            </div>
 
-    <h2 class="rainbow-text">What does DevConsole do?</h2>
-    <p>It has multiple plugins while enabling, such as:</p>
-    <ul>
-        <li>AntiBan</li>
-        <li>FPS UNLOCK</li>
-        <li>NordVPN</li>
-        <li>EasyAccess</li>
-        <li>DDoS Protection</li>
-    </ul>
-    <p>It also has Bypasses:</p>
-    <ul>
-        <li>Security Bypass</li>
-        <li>Suspension Bypass</li>
-    </ul>
-    <p>Connections from our Servers to yours are always more secure!</p>
+            <div class="feature-card">
+                <h2 class="feature-title">Security Bypasses</h2>
+                <ul class="feature-list">
+                    <li>Advanced Security Bypass</li>
+                    <li>Suspension Protection</li>
+                    <li>Secure Server Connection</li>
+                </ul>
+            </div>
+        </div>
 
-    <div class="button-container">
-        <a href="https://devconsoleps3.github.io/DevConsoleENabler/ENabler/ENabler.html" class="button">DevConsole ENabler</a>
-        <a href="https://devconsoleps3.github.io/DevConsoleENabler/HEN-Replace/henreplace.html" class="button">DevConsole ENabler (HEN Replacer)</a>
-    </div>
+        <div class="buttons-container">
+            <a href="https://devconsoleps3.github.io/DevConsoleENabler/ENabler/ENabler.html" class="button">
+                Install DevConsole ENabler
+            </a>
+            <a href="./HEN-Replace/henreplace.html" class="button">
+                Install HEN Replacer
+            </a>
+            <a href="https://devconsoleps3.github.io/DevConsoleENabler/Information/info.html" class="button">
+                View Documentation
+            </a>
+        </div>
+    </main>
 
-    <div class="button-container-vertical">
-        <a href="https://devconsoleps3.github.io/DevConsoleENabler/Information/info.html" class="button">Information About DevConsole</a>
-    </div>
-
-    <div class="floating-textbox">
-        <p><strong>Current Version:</strong></p>
-        <p>4.91.22</p>
+    <div class="version-badge">
+        <strong>Current Version:</strong> 4.91.22
     </div>
 </body>
 </html>
